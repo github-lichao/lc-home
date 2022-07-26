@@ -8,4 +8,4 @@ People not only depend on what they are born with, but also on what they get fro
 
 # 网址首页
 
-<!-- > https://lc.github.io/ -->
+> https://github-lichao.github.io/lc-home/#/
