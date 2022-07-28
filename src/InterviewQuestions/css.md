@@ -1,26 +1,28 @@
 css
 ### css3新特性
-选择器
+>选择器: p:nth-child(n){color: '#FFF'}
 
-盒子模型属性：border-radius、box-shadow、border-image
+>新增伪元素: ::before 和 ::after
 
-背景：background-size、background-origin、background-clip
+>盒子模型属性：圆角-->border-radius、阴影-->box-shadow、边框效果-->border-image
 
-文本效果：text-shadow、word-wrap
+>背景：背景效果-->background-size、background-origin、background-clip
 
-颜色：新增 RGBA，HSLA 模式
+>文本效果：文字阴影-->text-shadow、自动换行-->word-wrap
 
-渐变：线性渐变、径向渐变
+>颜色：新增 RGBA(颜色透明)-->color: rgba(255, 0, 0, 0.75);
 
-字体：*@font-face*
+>渐变：线性渐变、径向渐变  background:linear-gradient(red, green, blue);
 
-2D/3D转换：transform、transform-origin
+>字体：@font-face{font-family: BorderWeb;}
 
-过渡与动画：transition、@keyframes、animation
+>2D/3D转换：动画-->transform、旋转-->transform-origin
 
-多列布局
+>过渡与动画：transition、@keyframes、animation
 
-媒体查询
+>多列布局: column-count: 5;
+
+>媒体查询: @media (max-width: 480px) {.box: {column-count: 1;}}
 
 ### css选择器优先级和权重
 下面的优先级逐级增加：
