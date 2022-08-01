@@ -36,6 +36,7 @@
     - [React](/src/InterviewQuestions/react.md)
     - [Vue](/src/InterviewQuestions/vue.md)
     - [Node](/src/InterviewQuestions/node.md)
+    - [浏览器](/src/InterviewQuestions/Chrome.md)
     - [webpack](/src/InterviewQuestions/webpack.md)
     - [项目](/src/InterviewQuestions/project.md)
     - [可视化开发](/src/InterviewQuestions/visualization.md)
