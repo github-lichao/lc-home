@@ -1,4 +1,40 @@
-css
+### License盒模型（高频）
+
+>盒模型都是由四个部分组成的，分别是margin、border、padding和content。
+
+- 标准盒模型的width和height属性的范围只包含了content，
+- IE盒模型的width和height属性的范围包含了border、padding和content。
+
+### 隐藏元素的方法有哪些
+1.使用display: none; 隐藏dom；
+
+2.使用visibility: hidden; 隐藏dom；
+
+3.使用z-index: -888; 把元素的层级调为负数，然后其他元素覆盖即可；
+
+4.使用opacity: 0; 把元素的透明度调为0，也可以达到隐藏；
+
+5.使用固定定位position: absolute; 把元素定位到看不见的区域；
+
+6.使用transform: scale(0, 0); 把元素缩放为0，也可以实现元素隐藏。
+
+### 盒子水平垂直居中方法（高频）
+1.利用绝对定位，先将元素的左上角通过top:50%和left:50%定位到页面的中心，然后再通过translate来调整元素的中心点到页面的中心
+
+2.利用绝对定位，设置四个方向的值都为0，并将margin设置为auto，由于宽高固定，因此对应方向实现平分，可以实现水平和垂直方向上的居中。该方法适用于盒子有宽高的情况
+
+3.利用绝对定位，先将元素的左上角通过top:50%和left:50%定位到页面的中心，然后再通过margin负值来调整元素的中心点到页面的中心。该方法适用于盒子宽高已知的情况
+
+4.使用flex布局，通过align-items:center和justify-content:center设置容器的垂直和水平方向上为居中对齐，然后它的子元素也可以实现垂直和水平的居中
+
+### CSS样式优先级
+- !important
+- 内联样式（1000）
+- ID选择器（0100）
+- 类选择器（0010）
+- 元素选择器（0001）
+- 通配符选择器（0000）
+
 ### css3新特性
 >选择器: p:nth-child(n){color: '#FFF'}
 
