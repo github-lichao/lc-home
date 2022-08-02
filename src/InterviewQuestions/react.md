@@ -56,6 +56,12 @@ setState会进行state的合并，而useState则不会
 ### 常用的hooks有哪些
 >useState、useEffect 、useContext、 useCallback、useMemo
 
+### useEffect的第二个参数
+
+1.当useEffect没有第二个参数时，组件的初始化和更新都会执行。
+2.当传入的是一个空数组时（[]），初始化调用一次之后不再执行，相当于componentDidMount。
+3.当是有一个或者多个值的数组时,传入第二个参数，是一个值时，该值有变化就执行。传入第二个参数，有多个值的数组，会比较每一个值，有一个值发生了变化就执行。
+
 ### React元素与组件的区别？
 组件是由元素构成的。元素数据结构是普通对象，而组件数据结构是类或纯函数。
 

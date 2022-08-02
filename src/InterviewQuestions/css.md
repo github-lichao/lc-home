@@ -132,6 +132,53 @@ positon 设置为 absolute、fixed
 
 >align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
 
+### flex:1到底是什么
+
+>flex实际上是flex-grow、flex-shrink和flex-basis三个属性的缩写。
+
+```css
+flex:1 ==> flex:1 1 auto
+```
+#### flex-grow
+flex-grow属性指定了flex容器中剩余空间的多少应该被分配给项目。flex-grow设置的值为扩张因子，默认为0，剩余空间将会按照这个权重分别分配给子元素项目。
+
+例如：父元素的宽度为500px，其中有两个元素A和B，A的宽度为100px，B的宽度为150px。假如不设置flex-grow属性，那么父元素的剩余宽度为500-(100+150)=250px。
+
+```html
+<div id="container">
+        <div id="A">100px</div>
+        <div id="B">150px</div>
+</div>
+```
+```css
+		#container {
+            display: flex;
+            width: 500px;
+            margin: 20px;
+            border: 1px solid#000;
+        }
+
+        #A {
+            width: 100px;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        #B {
+            width: 150px;
+            height: 200px;
+            background-color: chocolate;
+        }
+```
+
+#### flex-shrink
+flex-shrink属性指定了flex元素的收缩规则。flex元素仅在默认宽度之和大于容器的时候才会发生收缩。默认属性值为1，所以在空间不够的时候，子项目将会自动缩小。
+
+#### flex-basis
+flex-basis属性指定了flex元素在主轴方向上的初始大小。如果不使用box-sizing改变盒模型的话，那么这个属性就决定了flex元素的内容的尺寸。如果设置了flex-basis值，那么元素占用的空间为flex-basis值；如果没有设置或者设置为auto，那么元素占据的空间为元素的width/height值。
+
+#### 详解请看： 
+https://blog.csdn.net/weixin_43554584/article/details/113839778?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2-113839778-blog-124444419.pc_relevant_sortByStrongTime&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2-113839778-blog-124444419.pc_relevant_sortByStrongTime&utm_relevant_index=5
 ### 如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性
 
 #### CSS 实现方式
@@ -273,5 +320,110 @@ border: 10px solid red;
 border-top-color: transparent;
 border-left-color: transparent;
 border-right-color: transparent;
+}
+```
+
+### css实现左侧固定右侧自适应
+基本html和css
+```html
+<div class="con conX"> //conX代表：con1 con2 con3
+    <div class="con_l conX_l">左侧固定width 200px</div>  //conX_l代表：con1_l con2_l con3_l
+    <div class="con_r conX_r">右侧自适应</div>  //conX_r代表：con1_r con2_r con3_r
+</div>
+```
+```css
+.con{
+    height:120px;
+    background:#ccc;
+    margin-bottom:20px;
+}
+.con_l{
+    width:200px;
+    height:80%;
+    background:palegreen;
+}
+.con_r{
+    height:100%;
+    background:peru;
+}
+```
+
+1、左侧元素浮动，右侧元素添加overflow:hidden，触发bfc，bfc的区域不会与float的元素重叠
+```css
+.con1_l{
+    float:left;
+}
+.con1_r{
+    overflow: hidden;
+}
+```
+2、左侧元素浮动，右侧元素添加margin-left，值为左侧元素的宽度
+```css
+.con2_l{
+    float:left;
+}
+.con2_r{
+    margin-left:200px;
+}
+```
+3、左侧元素浮动，右侧元素添加子元素，父元素添加padding-left
+```html
+<div class="con">
+    <div class="con_l con3_l">左侧固定width 200px</div>
+    <div class="con_r con3_r">
+        <div class="con3_r_con">右侧自适应</div>
+    </div>
+</div>
+```
+```css
+.con3_l{
+    float:left;
+}
+.con3_r{
+    padding-left:200px;
+}
+.con3_r_con{
+    height:100%;
+    background:palevioletred;
+}
+```
+4、左侧元素position定位，0px 0px。右侧元素margin-left:200px;
+```css
+.con4{
+    position:relative;
+}
+.con4_l{
+    position:absolute;
+}
+.con4_r{
+    margin-left:200px;
+}
+```
+5、使用width:calc（100%-200px)
+```css
+.con5_l{
+    float:left;
+}
+.con5_r{
+    width:calc(100% - 200px);
+    float:left;
+}
+```
+6、使用table-cell表格布局,宽度会被内容撑开。如果宽度不够的话，不会充满浏览器的宽
+```css
+.con6{
+    display:table;
+}
+.con6_l,.con6_r{
+    display:table-cell;
+}
+```
+7、使用flex布局
+```css
+.con7{
+    display:flex;
+}
+.con7_r{
+    flex-grow:1;
 }
 ```
