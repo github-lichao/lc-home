@@ -1,6 +1,7 @@
 - [返回上一级_↩️](/README.md)
     - [css](/src/InterviewQuestions/css.md)
     - [js](/src/InterviewQuestions/javaScript.md)
+    - [算法](/src/InterviewQuestions/algorithm.md)
     - [ts](/src/InterviewQuestions/typeScript.md)
     - [React](/src/InterviewQuestions/react.md)
     - [Vue](/src/InterviewQuestions/vue.md)
