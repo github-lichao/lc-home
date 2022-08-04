@@ -1,5 +1,23 @@
 ### 求最长的公共字符串
 
+```js
+function LCS(str1, str2) {
+  if (!str1 || !str2) return -1;
+  // str1，str2中 length 小的当str1，用于遍历比较
+  if (str1.length > str2.length) {
+    [str1, str2] = [str2, str1];
+  }
+  let max = 0,
+    res = "";
+  for (let i = 0; i < str1.length; i++) {
+    if (str2.indexOf(str1.slice(i - max, i + 1)) !== -1) {
+      res = str1.slice(i - max, i + 1);
+      max += 1;
+    }
+  }
+  return res || -1;
+}
+```
 ### 只出现一次的数字
 
 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素
@@ -81,4 +99,57 @@ var isPalindrome = function(x) {
   // let y = x.toString().split('').reverse().join('');
   // return Number(y) === x
 };
+```
+
+### 有效括号
+
+```js
+let s = '{[(){}[]]}'
+const handel = (str) => {
+  if (str.length % 2) {
+    return false;
+  }
+  const a = new Map([
+    ['}','{'],
+    [']','['],
+    [')','('],
+  ])
+  let newStr = [];
+  for(let b of str){
+    if (a.has(b)) {
+      if (!newStr.length || newStr[newStr.length - 1] !== a.get(b)) {
+        return false
+      }
+      newStr.pop();
+    } else {
+      newStr.push(b);
+    }
+  }
+  return !newStr.length
+}
+handel(s); //true
+```
+
+暴力解析
+
+js查找是否有对应的括号，有就替换删除掉，查看替换后的数据，如果是空，就直接return出去，如果还有值，就递归执行函数
+第一次没有对应的括号，就直接return false出去
+
+```js
+let s = '{[(){}[]]}}}'
+const handel = (str) => {
+  if (str.includes('[]') || str.includes('()') || str.includes('{}') ) {
+    str = str.replace('[]','');
+    str = str.replace('()','');
+    str = str.replace('{}','');
+    if(str === ''){
+      return true;
+    }else{
+     return handel(str);
+    }
+  } else {
+    return false;
+  }
+}
+handel(s); //false
 ```
