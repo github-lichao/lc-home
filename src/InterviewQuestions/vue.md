@@ -14,9 +14,30 @@
 
 跨组件通讯 $attrs、$listeners Provide、inject
 
-### vuex
+### Vuex 是什么？
+https://blog.csdn.net/m0_60265689/article/details/120274308
 
-#### computed与watch
+1.Vuex 是一个专为 Vue.js 应用程序开发的<font color='#ea6f5a'>状态管理模式</font>。每一个 Vuex 应用的核心就是 store（仓库）。“store” 基本上就是一个容器，它包含着你的应用中大部分的状态(state)
+
+2.<font color='#ea6f5a'>Vuex 的状态存储是响应式的。</font>当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+
+3.<font color='#ea6f5a'>改变 store 中的状态的唯一途径就是显式地提交</font> (commit) mutation。这样使得我们可以方便地跟踪每一个状态的变化。
+
+4.<font color='#ea6f5a'>Vuex 使用单一状态树，用一个对象就包含了全部的应用层级状态。</font>至此它便作为一个“唯一数据源 (SSOT)”而存在。这也意味着，每个应用将仅仅包含一个 store 实例。单一状态树让我们能够直接地定位任一特定的状态片段，在调试的过程中也能轻易地取得整个当前应用状态的快照。——Vuex官方文档
+
+#### 主要包括以下几个模块：
+
+<font color='#ea6f5a'>State</font>：定义了应用状态的数据结构，可以在这里设置默认的初始状态。
+
+<font color='#ea6f5a'>Getter</font>：允许组件从 Store 中获取数据，mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性。
+
+<font color='#ea6f5a'>Mutation</font>：是唯一更改 store 中状态的方法，且必须是同步函数。
+
+<font color='#ea6f5a'>Action</font>：用于提交 mutation，而不是直接变更状态，可以包含任意异步操作。
+
+<font color='#ea6f5a'>Module</font>：允许将单一的 Store 拆分为多个 store 且同时保存在单一的状态树中。
+### computed与watch
+
 watch 属性监听 是一个对象，键是需要观察的属性，值是对应回调函数，主要用来监听某些特定数据的变化，从而进行某些具体的业务逻辑操作,监听属性的变化，需要在数据变化时执行异步或开销较大的操作时使用
 
 computed 计算属性 属性的结果会被缓存，当computed中的函数所依赖的属性没有发生改变的时候，那么调用当前函数的时候结果会从缓存中读取。除非依赖的响应式属性变化时才会重新计算，主要当做属性来使用 computed中的函数必须用return返回最终的结果 computed更高效，优先使用。data 不改变，computed 不更新。
@@ -46,19 +67,6 @@ keep-alive的实现
 原理：Vue.js内部将DOM节点抽象成了一个个的VNode节点，keep-alive组件的缓存也是基于VNode节点的而不是直接存储DOM结构。它将满足条件（pruneCache与pruneCache）的组件在cache对象中缓存起来，在需要重新渲染的时候再将vnode节点从cache对象中取出并渲染。
 
 配置属性： include 字符串或正则表达式。只有名称匹配的组件会被缓存 exclude 字符串或正则表达式。任何名称匹配的组件都不会被缓存 max 数字、最多可以缓存多少组件实例
-
-### Vuex
-Vuex 是一个专为 Vue 应用程序开发的状态管理模式。每一个 Vuex 应用的核心就是 store（仓库）。
-
-Vuex 的状态存储是响应式的；当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新
-2. 改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation， 这样使得我们可以方便地跟踪每一个状态的变化 Vuex主要包括以下几个核心模块：
-State：定义了应用的状态数据
-Getter：在 store 中定义“getter”（可以认为是 store 的计算属性），就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来， 且只有当它的依赖值发生了改变才会被重新计算
-3. Mutation：是唯一更改 store 中状态的方法，且必须是同步函数
-
-4. Action：用于提交 mutation，而不是直接变更状态，可以包含任意异步操作
-
-5. Module：允许将单一的 Store 拆分为多个 store 且同时保存在单一的状态树中
 
 ### vue-router 怎么传参
 1.id传参
